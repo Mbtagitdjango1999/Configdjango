@@ -20,6 +20,9 @@ class PostAdmin(admin.ModelAdmin):
         'tags',
     )
     
+    autocomplete_fields = (
+        'category',
+    )
         
     readonly_fields = (
            'created',

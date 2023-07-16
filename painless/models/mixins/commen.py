@@ -28,7 +28,7 @@ class TitleSlugMixin(models.Model):
     
     #when you use this format instead of title you dont have any ordering so must be declare ordring in this part and you can change it's name from view_title to what ever you want in description
     @admin.display(empty_value= _("--Empty--"),ordering=('-title'),description=_("title"))
-    def view_title(self,obj):
+    def view_title(self):
         return self.title if len(self.title)< 30 else (self.title[:30]+ '...')    
          
     #this is for save automotly slug from title

@@ -11,3 +11,8 @@ class CategoryAdmin(admin.ModelAdmin):
         'created',
         'modified',       
     )
+    
+    #if you want use auto_complete_field in post you must have search field in category beacause the category_id is a foreignKEY in posts
+    search_fields =(
+        'title',
+    )

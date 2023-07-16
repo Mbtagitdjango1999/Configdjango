@@ -6,8 +6,8 @@ from painless.models.mixins import TitleSlugMixin,TimestampMixin,BannerOperation
     
 class Category(TitleSlugMixin,TimestampMixin) :
     class Meta :
-        verbose_name = _("Post Category")
-        verbose_name_plural = _("Post Categories") 
+        verbose_name = _("Category")
+        verbose_name_plural = _("Categories") 
           
     def __str__(self) -> str:
         return self.title
