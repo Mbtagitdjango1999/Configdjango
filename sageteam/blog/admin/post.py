@@ -31,6 +31,12 @@ class PostAdmin(admin.ModelAdmin):
          
             )
     
+    # fieldsets = (
+    #     (_("Service Information"),{'classes':('collapse',),"fields":('title',
+    #     'slug',
+    #     'description')}),
+    # )
+    
     
     
     #its better to declare in model juuuuussssttttt this place 

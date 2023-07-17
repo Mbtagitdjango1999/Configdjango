@@ -25,7 +25,6 @@ class BlogDataGeneratorLayer(BaseDataGenerator):
         super().__init__(*args, **kwargs)
 
 
-
     def create_post_categories(self,total):
         # for i in tqdm(range(total)):
         #     Category.objects.create(title = f"category{secrets.token_urlsafe(10)}")
@@ -42,8 +41,6 @@ class BlogDataGeneratorLayer(BaseDataGenerator):
         
         categories =Category.objects.bulk_create(objs,batch_size=10_000)
         return categories
-        
-        
         
         
     def create_tags(self,total):
@@ -90,4 +87,9 @@ class BlogDataGeneratorLayer(BaseDataGenerator):
         
         posts =Post.objects.bulk_create(objs,batch_size=10_000)
         return posts
+    
+    
+    def join_tags_to_posts(self,posts,tags):
+        
+    
         

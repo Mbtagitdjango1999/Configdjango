@@ -5,6 +5,7 @@ from painless.models.mixins import TitleSlugMixin,TimestampMixin,BannerOperation
 from django.core.validators import FileExtensionValidator 
 # from .tag import Tag
 
+from ..repository.manager import PostDataAccessLayerManager
 
 # class Tag(TitleSlugMixin,TimestampMixin) :
 #     class Meta :
@@ -26,11 +27,23 @@ class Post(TimestampMixin,TitleSlugDescriptionMixin,PictureOperationMixin):
     category = models.ForeignKey("Category",verbose_name="Category",on_delete=models.PROTECT,related_name='posts',help_text=_("access to all post by category"),blank=True,null=True)
     tags = models.ManyToManyField("Tag",verbose_name="Tags",related_name='posts',help_text=_("access to all posts by tags"),blank=True)
     
+    #this is part that we work by querysets
+    dal = PostDataAccessLayerManager()
+    #if we dont wite this part we cannt use post.objects beacause its not in us hand after declare "dal" or "bll"
+    #so we declare objects in other part to use objects
+    #because in futuer if we install package <>that package dont know manager(objects) so we declare it in other hand to reach manager(objects)  
+    objects = models.Manager()
+    
+    
     def __str__(self) -> str:
         return self.title
     def __repr__(self) -> str:
         return self.title
     
+    
+    class Meta :
+        verbose_name = _("Post")
+        verbose_name_plural = _("Posts") 
     
    
     
