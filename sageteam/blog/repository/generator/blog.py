@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 from django.conf import settings
 from sageteam.blog.models import Category ,Tag ,Post
-
+import functools
 from painless.models.generator import BaseDataGenerator
 
 #this package for tell to django we have fake data upload 
@@ -89,7 +89,20 @@ class BlogDataGeneratorLayer(BaseDataGenerator):
         return posts
     
     
-    def join_tags_to_posts(self,posts,tags):
+    def join_tags_to_posts(self,posts,tags,item_per_obj):
+        joiner = functools.partial(
+                self.add_to_m2m,
+                tags,
+                'tags',
+                item_per_obj,
+            
+        )
+        result = list(tqdm(map(joiner,posts)))
+        
+        return posts
+        #this posts have objects
+            
+       
         
     
         

@@ -21,3 +21,5 @@ class Command(BaseCommand):
         categories = DGL.create_post_categories(cat_total)
         tags = DGL.create_tags(total=tag_total)
         posts = DGL.create_posts(categories=categories,tags=tags,total=2000)
+        posts = DGL.join_tags_to_posts(posts=posts,tags=tags,item_per_obj=3)
+        print('data')
