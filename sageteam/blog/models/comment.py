@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from django.conf import settings
 from painless.models.mixins import TitleSlugMixin,TimestampMixin,BannerOperationMixin,TitleSlugDescriptionMixin,PictureOperationMixin
 from django.contrib.auth import get_user_model
+# from account.models import profile
 User = get_user_model()
     #TODO asdasdas
 class Comment(TimestampMixin) :

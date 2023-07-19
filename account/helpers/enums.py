@@ -1,7 +1,7 @@
-from enum import Enum
+#from enum import StrEnum
+from strenum import StrEnum
 
-
-class RegexPatternEnum(Enum):
+class RegexPatternEnum(StrEnum):
     IRAN_PHONE_NUMBER = r'^(\+98|0)?9\d{9}$'
     INTERNATIONAL_PHONE_NUMBER = r'^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$'    
     USERNAME = r'^[a-zA-Z][a-zA-Z0-9.]{2,14}$'

@@ -1,6 +1,7 @@
 from kernel.settings.base import DEFAULT_APPS
 
 BUSINESS_APPS=[
+   "account",
    'sageteam.service',
    'sageteam.blog',
    'painless'

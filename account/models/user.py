@@ -8,6 +8,10 @@ from account.helpers.enums import RegexPatternEnum
 from django.contrib.auth.validators import UnicodeUsernameValidator
 import secrets
 
+from ..repository.manager import  UserManager
+
+
+
 class User(AbstractUser,TimestampMixin):
     
     class Meta :
@@ -30,7 +34,8 @@ class User(AbstractUser,TimestampMixin):
         help_text=_(
             "Required. 15 characters or fewer. Letters, digits and @/./+/-/_ only."
         ),
-        validators=[username_validator,[RegexValidator(RegexPatternEnum.USERNAME),MaxLengthValidator(15),MinLengthValidator(3)],],
+        # ,
+        validators=[username_validator,RegexValidator(RegexPatternEnum.USERNAME),MaxLengthValidator(15),MinLengthValidator(3)],
         error_messages={
             "unique": _("A user with that username already exists."),
             #this("min_length") is the code in validators you can read it in documention of MinLengthValidator
@@ -42,20 +47,29 @@ class User(AbstractUser,TimestampMixin):
     first_name = models.CharField(_('first name'),max_length=150,blank=True,null=True,validators=[RegexValidator(RegexPatternEnum.NAME),MaxLengthValidator(15),MinLengthValidator(3)])
     last_name = models.CharField(_("last name"),blank=True,null=True,validators=[RegexValidator(RegexPatternEnum.NAME),MaxLengthValidator(15),MinLengthValidator(3)])
     
-    username = None
+    #username = None
     phone_number = models.CharField(_("Phone Number"),max_length=15,unique=True,validators=[RegexValidator(RegexPatternEnum.IRAN_PHONE_NUMBER,MaxLengthValidator(15),MinLengthValidator(10)),],help_text=_('users'))
     email = models.EmailField(_('Email Adress'),blank=True,null=True,validators=[EmailValidator("email is valid")])
     
     
-    USERNAME_FIELD = phone_number
+    objects = UserManager()
+    
+    USERNAME_FIELD = 'phone_number'
     EMAIL_FIELD = 'email'
-    REQUIRED_FIELDS = ['phone_number']
+    #every thing that you declare in USERNAME_FIELD its not need to refrenced in REQUIRED_FIELDS
+    #REQUIRED_FIELDS = ['phone_number']
     
     
     #this a part you can dor bezanin vogode UserName ro and it refrenced phone_number instead of user_name
-    @property
-    def username(self):
-        return self.phone_number
+    
+    #and when we use the default admin for User in django cause we declare phone_number insted of user name 
+    # for user name it send error to us because django dont recognized what field is actully usename 
+    # and its will be ok when we romove completly username and instead of by username
+    #and for this @property username cannt go to makemigartions
+    
+    # @property
+    # def username(self):
+    #     return self.phone_number
     
     def __str__(self):
         return f'{self.phone_number}'
