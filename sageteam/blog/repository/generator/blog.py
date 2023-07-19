@@ -57,7 +57,7 @@ class BlogDataGeneratorLayer(BaseDataGenerator):
         return tags
     
     
-    def create_posts(self,categories,tags,total):
+    def create_posts(self,categories,total):
         # BaseDataGenerator.get_random_secret() = self.get_random_secret() forrrrr just OOP
         demo_pic_path = os.path.normpath(f"media/demo/3EroTL.jpg")
         with open(os.path.join(BASEDIR,demo_pic_path),mode='rb')as pic_file:
