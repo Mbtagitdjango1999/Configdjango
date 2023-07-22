@@ -70,7 +70,10 @@ STATIC_ROOT =os.path.join(BASE_DIR , config('COLLECT_STATIC_DIR'))
 
 MEDIA_URL = config('MEDIA_URL')
 
-MEDIA_ROOT = config('MEDIA_UPLOAD_DIR')
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, config('MEDIA_UPLOAD_DIR'))
+
+# MEDIA_ROOT = config('MEDIA_UPLOAD_DIR')
 
 
 DEFAULT_AUTO_FIELD= 'django.db.models.AutoField'

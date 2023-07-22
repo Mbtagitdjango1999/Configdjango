@@ -86,6 +86,7 @@ class BlogDataGeneratorLayer(BaseDataGenerator):
         ]    
         
         posts =Post.objects.bulk_create(objs,batch_size=10_000)
+        
         return posts
     
     

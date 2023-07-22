@@ -17,12 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path
+from django.conf import settings
 from .settings.base import STATIC_URL,STATIC_ROOT,MEDIA_ROOT,MEDIA_URL
 from decouple import config
+from django.conf import global_settings
+from .settings import base
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
+# + static(base.STATIC_URL, document_root=base.STATIC_ROOT)
 
 
 
@@ -31,5 +35,31 @@ urlpatterns = [
 #in deploy area nginx do this part
 
 if config("DEBUG_MODE",default = False,cast = bool):
-    urlpatterns = static(STATIC_URL,document_root = STATIC_ROOT)
-    urlpatterns = static(MEDIA_URL,document_root = MEDIA_ROOT)
+    print("ffsdf")
+    print(STATIC_URL)
+    print(STATIC_ROOT)
+    print(MEDIA_URL)
+    print(MEDIA_ROOT)
+    # urlpatterns += static(STATIC_URL,document_root = STATIC_ROOT)
+    # urlpatterns += static(MEDIA_URL,document_root = MEDIA_ROOT)
+    
+    
+    y = static(STATIC_URL,document_root = STATIC_ROOT)
+    x =static(MEDIA_URL,document_root = MEDIA_ROOT)
+    
+    print(x, 'dsadd ;;' , y)
+    
+    urlpatterns += static(settings.STATIC_URL,document_root = settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
+    y = static(settings.STATIC_URL,document_root = settings.STATIC_ROOT)
+    x =static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
+    print(x, 'dsadd ;;' , y)
+    
+    print(settings.STATIC_URL)
+    print(settings.STATIC_ROOT)
+    print(settings.MEDIA_URL)
+    print(settings.MEDIA_ROOT)
+    # urlpatterns += static('/static/',document_root = '/home/unobody/Desktop/1/media/collectstatic')
+    # urlpatterns += static('/media/',document_root = 'media/')
+    
+    # generated__pic---ewzkOHHM.jpg
