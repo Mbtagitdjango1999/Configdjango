@@ -23,7 +23,7 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault('is_superuser' , False)
         extra_fields.setdefault('is_active',False)
         return self._create_user(phone_number=phone_number,password=password,**extra_fields)
-    
+     
     
     def create_active_user(self,phone_number , password = None , **extra_fields) :
         extra_fields.setdefault('is_superuser' , False)
